@@ -1,2 +1,7 @@
 html { height: 100%; margin: 0px; padding: 0px;}
-body { height: 100%; margin: 0px; padding: 0px; font-family: OpenSans, Verdana; background: #fafafa; font-size: 0px; color: #333;}
+body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Verdana; background: #fafafa; font-size: 14px; color: #333;}
+
+#left_aside { display: block; position: absolute; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 2px #333; overflow: auto;}
+#right_aside { display: block; position: absolute; right: 0px; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 2px #333; overflow: auto;}
+	#left_aside section, #right_aside section { display: block; height: 250px; border-bottom: 1px solid #ddd;}
+	#left_aside section h2, #right_aside section h2 { display: block; height: 32px; line-height: 32px; margin: 0px; padding: 0px 16px; border-bottom: 1px solid #eee; font-weight: normal; font-size: 16px; background: #fafafa;}
