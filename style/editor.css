@@ -3,5 +3,6 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 
 #left_aside { display: block; position: absolute; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 2px #333; overflow: auto;}
 #right_aside { display: block; position: absolute; right: 0px; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 2px #333; overflow: auto;}
-	#left_aside section, #right_aside section { display: block; height: 250px; border-bottom: 1px solid #ddd;}
-	#left_aside section h2, #right_aside section h2 { display: block; height: 32px; line-height: 32px; margin: 0px; padding: 0px 16px; border-bottom: 1px solid #eee; font-weight: normal; font-size: 16px; background: #fafafa;}
+	#left_aside section, #right_aside section { display: block; border-bottom: 1px solid #ddd; overflow: hidden;}
+	#left_aside section h2, #right_aside section h2 { display: block; height: 32px; line-height: 32px; margin: 0px; padding-left: 16px; border-bottom: 1px solid #eee; font-weight: normal; font-size: 16px; background: #fafafa;}
+		#left_aside section h2 span, #right_aside section h2 span { display: inline-block; float: right;width: 32px; height: 32px; line-height: 32px; border-left: 1px solid #eee; text-align: center; cursor: pointer;}
