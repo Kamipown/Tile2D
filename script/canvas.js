@@ -1,3 +1,4 @@
+/*
 var canvas = document.getElementById("main_canvas");
 var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
@@ -27,3 +28,19 @@ update_canvas();
 var img    = canvas.toDataURL("image/png");
 document.write('<img src="'+img+'"/>');
 window.open("file:///C:/Users/Kamipown/Desktop/Tile2d/index.html", "Window Title", "width=500, height=450");
+*/
+
+var canvas_handler = document.getElementById("canvas_handler");
+
+function init_canvas()
+{
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+	var canvas_handler_w = canvas_handler.clientWidth;
+	var canvas_handler_h = canvas_handler.clientHeight;
+
+	canvas_handler.style.left = (w / 2) - (canvas_handler_w / 2) + "px";
+	canvas_handler.style.top = (h / 2) - (canvas_handler_h / 2) + "px";
+//	var left_pos = 
+//	canvas_handler.
+}

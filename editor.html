@@ -8,25 +8,54 @@
 		<link rel="icon" type="img/png" href="img/favicon.png" />
 	</head>
  
-	<body>
+	<body onload="init_canvas()">
+
+		<div id="canvas_handler">
+			<canvas id="canvas_1" width="40" height="40"></canvas>
+			<canvas id="canvas_2" width="40" height="40"></canvas>
+			<canvas id="canvas_3" width="40" height="40"></canvas>
+			<canvas id="canvas_4" width="40" height="40"></canvas>
+			<canvas id="canvas_5" width="40" height="40"></canvas>
+		</div>		
+
 		<aside id="left_aside">
 			<section id="project_view_section">
 				<h2>Project view<span onclick="show_hide(this)">-</span></h2>
+				<div class="zoom">
+					<p>Zoom :</p><input type="button" onclick="set_zoom_value(-1)" value="-" /><span id="span_zoom_value">1</span><input type="button" onclick="set_zoom_value(1)" value="+" />
+				</div>
+				<div class="grid">
+					<p>Grid :</p><input type="checkbox" checked />
+				</div>
+				<div class="rules">
+					<p>Rules :</p><input type="checkbox" checked />
+				</div>
+				<div class="background">
+					<p>Background :</p><input type="color" onchange="set_background_project(this.value)" value="#222222" />
+				</div>
+			</section>
+			<section id="tools_section">
+				<h2>Tools<span onclick="show_hide(this)">-</span></h2>
 				<p>Yo</p>
 			</section>
 			<section id="palettes_section">
 				<h2>Palettes<span onclick="show_hide(this)">-</span></h2>
-				<p>Yo</p>
+				<input type="color" value="#fad345" />
 			</section>
 		</aside>
 
 		<aside id="right_aside">
 			<section  id="tile_preview_section">
 				<h2>Tile preview<span onclick="show_hide(this)">-</span></h2>
+				<canvas id="preview_canvas" width="256" height="256"></canvas>
+			</section>
+			<section  id="save_section">
+				<h2>Save Tile<span onclick="show_hide(this)">-</span></h2>
 				<p>Yo</p>
 			</section>
 		</aside>
 		
 		<script type="text/javascript" src="script/ui.js"></script>
+		<script type="text/javascript" src="script/canvas.js"></script>
 	</body>
 </html>
