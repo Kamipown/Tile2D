@@ -1,5 +1,5 @@
 html { height: 100%; margin: 0px; padding: 0px;}
-body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Verdana; background: #222; font-size: 14px; color: #333;}
+body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Verdana; background: #222; font-size: 14px; color: #333; overflow: hidden;}
 
 #main_canvas { display: block; position: absolute; z-index: 1; width: 40px; height: 40px; box-shadow: 0px 0px 4px #000; background-image: url(../img/canvas_bg.png);}
 
@@ -30,6 +30,9 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 	#project_view_section .background { margin-top: 8px; margin-bottom: 8px; padding: 0px 16px;}
 		#project_view_section .background p { display: inline-block; vertical-align: top; width: 100px; height: 32px; line-height: 32px; margin: 0px; font-size: 14px;}
 		#project_view_section .background input { display: inline-block; vertical-align: top; width: 64px; height: 32px; padding: 0px; border: none; background: #fff; font-size: 14px; cursor: pointer;}
+
+#tools_section {}
+	#tools_section img { padding: 5px;}
 
 #tile_preview_section {}
  #tile_preview_section canvas { background: #222;}
