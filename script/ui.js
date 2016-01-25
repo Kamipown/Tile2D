@@ -13,14 +13,31 @@ function show_hide(elem)
 }
 
 /* Project View */
+
+var zoom_value = 1;
+var tiles_count = 3;
+
 function set_zoom_value(val)
 {
 	var span_zoom_value = document.getElementById("span_zoom_value");
-	var span_zoom_value_int = parseInt(span_zoom_value.innerHTML)
-	if (val == -1 && span_zoom_value_int > 1)
-		span_zoom_value.innerHTML = span_zoom_value_int - 1;
-	else if (val == 1 && span_zoom_value_int < 10)
-		span_zoom_value.innerHTML = span_zoom_value_int + 1;
+	if (val == -1 && zoom_value > 1)
+		span_zoom_value.innerHTML = --zoom_value;
+	else if (val == 1 && zoom_value < 10)
+		span_zoom_value.innerHTML = ++zoom_value;
+	set_canvas_size();
+	update_main_canvas_position();
+}
+
+function set_tiles_count(val)
+{
+	var span_tiles_count = document.getElementById("span_tiles_count");
+	if (val == -2 && tiles_count > 1)
+		tiles_count -= 2;
+	else if (val == 2 && tiles_count < 15)
+		tiles_count += 2;
+	span_tiles_count.innerHTML = tiles_count + "x" + tiles_count;
+	set_canvas_size();
+	update_main_canvas_position();
 }
 
 function set_background_project(color)

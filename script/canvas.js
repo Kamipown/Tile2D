@@ -1,22 +1,36 @@
-var canvas_handler = document.getElementById("canvas_handler");
+var tile_size = 40;
+var main_canvas = document.getElementById("main_canvas");
 
-function update_canvas_handler()
+function update_main_canvas_position()
 {
 	var w = window.innerWidth;
 	var h = window.innerHeight;
-	var canvas_handler_w = canvas_handler.clientWidth;
-	var canvas_handler_h = canvas_handler.clientHeight;
+	var main_canvas_w = main_canvas.clientWidth;
+	var main_canvas_h = main_canvas.clientHeight;
 
-	canvas_handler.style.left = (w / 2) - (canvas_handler_w / 2) + "px";
-	canvas_handler.style.top = (h / 2) - (canvas_handler_h / 2) + "px";
+	main_canvas.style.left = (w / 2) - (main_canvas_w / 2) + "px";
+	main_canvas.style.top = (h / 2) - (main_canvas_h / 2) + "px";
+}
+
+function set_canvas_size()
+{
+	var s = tile_size * tiles_count * zoom_value;
+	main_canvas.style.width = s + "px";
+	main_canvas.style.height = s + "px";
+	main_canvas.width = s;
+	main_canvas.height = s;
 }
 
 function init_canvas()
 {
-	update_canvas_handler();
+	var ts = parseInt(localStorage.getItem("tile_size"));
+	if (ts)
+		tile_size = ts;
+	set_canvas_size();
+	update_main_canvas_position();
 }
 
-window.onresize = update_canvas_handler;
+window.onresize = update_main_canvas_position;
 
 /*
 var canvas = document.getElementById("main_canvas");

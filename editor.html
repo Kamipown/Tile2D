@@ -10,13 +10,7 @@
  
 	<body onload="init_canvas()">
 
-		<div id="canvas_handler">
-			<canvas id="canvas_1" width="40" height="40"></canvas>
-			<canvas id="canvas_2" width="40" height="40"></canvas>
-			<canvas id="canvas_3" width="40" height="40"></canvas>
-			<canvas id="canvas_4" width="40" height="40"></canvas>
-			<canvas id="canvas_5" width="40" height="40"></canvas>
-		</div>		
+		<canvas id="main_canvas" width="40" height="40"></canvas>
 
 		<aside id="left_aside">
 			<section id="project_view_section">
@@ -24,8 +18,14 @@
 				<div class="zoom">
 					<p>Zoom :</p><input type="button" onclick="set_zoom_value(-1)" value="-" /><span id="span_zoom_value">1</span><input type="button" onclick="set_zoom_value(1)" value="+" />
 				</div>
+				<div class="tiles">
+					<p>Tiles :</p><input type="button" onclick="set_tiles_count(-2)" value="-" /><span id="span_tiles_count">3x3</span><input type="button" onclick="set_tiles_count(2)" value="+" />
+				</div>
 				<div class="grid">
 					<p>Grid :</p><input type="checkbox" checked />
+				</div>
+				<div class="shape">
+					<p>Shape :</p><input type="checkbox" checked />
 				</div>
 				<div class="rules">
 					<p>Rules :</p><input type="checkbox" checked />
