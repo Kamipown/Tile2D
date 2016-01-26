@@ -50,9 +50,22 @@ function set_background_project(color)
 
 var active_tool = "pen";
 
+function show_tool_option()
+{
+	var tools_option = document.getElementsByClassName("tool");
+	var i = 0;
+	while (i < tools_option.length)
+	{
+		tools_option[i].style.display = "none";
+		++i;
+	}
+	document.getElementById("tool_option_" + active_tool).style.display = "block";
+}
+
 function select_tool(elem, tool)
 {
 	document.getElementById("selected_tool").id = "";
 	elem.id = "selected_tool";
 	active_tool = tool;
+	show_tool_option();
 }
