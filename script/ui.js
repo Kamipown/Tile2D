@@ -45,3 +45,13 @@ function set_background_project(color)
 	document.body.style.background = color;
 	document.getElementById("preview_canvas").style.background = color;
 }
+
+/* Tools */
+
+var active_tool = 0;
+
+function select_tool(tool)
+{
+	document.getElementById("selected_tool").id = "";
+	tool.id = "selected_tool";
+}
