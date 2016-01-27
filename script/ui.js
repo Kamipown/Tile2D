@@ -50,6 +50,24 @@ function set_background_project(color)
 
 var active_tool = "pen";
 
+var pen_size = 1;
+var pen_opacity = 1;
+
+var pipette_size = 1;
+
+var eraser_size = 1;
+
+var bucket_mode = 1;
+var bucket_tolerance = 1;
+
+var lighten_size = 1;
+var lighten_mode = 1;
+var lighten_opacity = 100;
+
+var darken_size = 1;
+var darken_mode = 1;
+var darken_opacity = 100;
+
 function show_tool_option()
 {
 	var tools_option = document.getElementsByClassName("tool");
@@ -68,4 +86,18 @@ function select_tool(elem, tool)
 	elem.id = "selected_tool";
 	active_tool = tool;
 	show_tool_option();
+}
+
+function update_pen_size(size)
+{
+	document.getElementById("pen_size_span").innerHTML = size + " pixel";
+	if (size > 1)
+		document.getElementById("pen_size_span").innerHTML += "s";
+	pen_size = parseInt(size);
+}
+
+function update_pen_opacity(opacity)
+{
+	document.getElementById("pen_opacity_span").innerHTML = opacity + "%";
+	pen_opacity = parseInt(size);
 }

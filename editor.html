@@ -42,7 +42,12 @@
 				<div class="tool_handler" onclick="select_tool(this, 'bucket')"><img src="img/tools/bucket.svg"/><span class="shortcut">B</span></div>
 				<div class="tool_handler" onclick="select_tool(this, 'lighten')"><img src="img/tools/lighten.svg"/><span class="shortcut">L</span></div>
 				<div class="tool_handler" onclick="select_tool(this, 'darken')"><img src="img/tools/darken.svg"/><span class="shortcut">D</span></div>
-				<div class="tool" id="tool_option_pen"></div>
+				<div class="tool" id="tool_option_pen">
+					<p>Pen size : </p><span id="pen_size_span">1 pixel</span>
+					<input oninput="update_pen_size(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Pen opacity : </p><span id="pen_opacity_span">100%</span>
+					<input oninput="update_pen_opacity(this.value)" type="range" min="0" max="100" value="100"/>
+				</div>
 				<div class="tool" id="tool_option_pipette"></div>
 				<div class="tool" id="tool_option_eraser"></div>
 				<div class="tool" id="tool_option_bucket"></div>
@@ -65,7 +70,14 @@
 				<p>Yo</p>
 			</section>
 		</aside>
-		
+
+		<div id="bottom_div">
+			<span class="posx">x:0</span>
+			<span class="posy">y:0</span>
+			<span class="width">width:40</span>
+			<span class="height">height:40</span>
+		</div>
+
 		<script type="text/javascript" src="script/ui.js"></script>
 		<script type="text/javascript" src="script/canvas.js"></script>
 	</body>
