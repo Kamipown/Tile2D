@@ -3,11 +3,11 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 
 #main_canvas { display: block; position: absolute; z-index: 1; width: 40px; height: 40px; background-image: url(../img/canvas_bg.png);}
 
-#left_aside { display: block; position: absolute; z-index: 3; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 2px #000; font-size: 0px; overflow: auto;}
-#right_aside { display: block; position: absolute; z-index: 3; right: 0px; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 2px #000; font-size: 0px; overflow: auto;}
-	#left_aside section, #right_aside section { display: block; border-bottom: 1px solid #ddd; overflow: hidden;}
-	#left_aside section h2, #right_aside section h2 { display: block; height: 32px; line-height: 32px; margin: 0px; padding-left: 16px; border-bottom: 1px solid #ccc; font-weight: normal; font-size: 16px; background: #fafafa;}
-		#left_aside section h2 span, #right_aside section h2 span { display: inline-block; float: right; width: 32px; height: 32px; line-height: 32px; border-left: 1px solid #ccc; text-align: center; cursor: pointer;}
+#left_aside { display: block; position: absolute; z-index: 3; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 4px #000; font-size: 0px; overflow: auto;}
+#right_aside { display: block; position: absolute; z-index: 3; right: 0px; width: 256px; height: 100%; background: #fff; box-shadow: 0px 0px 4px #000; font-size: 0px; overflow: auto;}
+	#left_aside section, #right_aside section { display: block; border-top: 1px solid #222; overflow: hidden;}
+	#left_aside section h2, #right_aside section h2 { display: block; height: 32px; line-height: 32px; margin: 0px; padding-left: 16px; border-bottom: 1px solid #222; color: #eee; font-weight: normal; font-size: 16px; background: #333;}
+		#left_aside section h2 span, #right_aside section h2 span { display: inline-block; float: right; width: 32px; height: 32px; line-height: 32px; border-left: 1px solid #222; color: #eee; text-align: center; cursor: pointer;}
 
 #project_view_section {}
 	#project_view_section .zoom { width: 256px; margin-top: 8px; padding: 0px 16px;}
@@ -43,7 +43,7 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 		#tool_option_pen span { display: inline-block; vertical-align: top; height: 32px; line-height: 32px; font-size: 14px;}
 		#tool_option_pen input { display: block; width: 84%; margin: 0% 8%; padding: 0px;}
 
-#tile_preview_section {}
+#tile_preview_section { width: 256px; height: 256px;}
 	#tile_preview_section canvas { background: #222;}
 
 #bottom_div { display: block; position: absolute; left: 50%; bottom: 0; height: 32px; margin-left: auto; margin-right: auto; box-shadow: 0px 0px 2px #000; background: #333; font-size: 0px; color: #eee; transform: translate(-50%, 0);}
