@@ -50,6 +50,10 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 		#tool_option_eraser p { display: inline-block; vertical-align: top; width: 100px; height: 32px; line-height: 32px; margin: 0px; margin-left: 16px; font-size: 14px;}
 		#tool_option_eraser span { display: inline-block; vertical-align: top; height: 32px; line-height: 32px; font-size: 14px;}
 		#tool_option_eraser input { display: block; width: 84%; margin: 0% 8%; padding: 0px;}
+	#tool_option_bucket { display: none; padding-bottom: 8px;}
+		#tool_option_bucket p { display: inline-block; vertical-align: top; width: 128px; height: 32px; line-height: 32px; margin: 0px; margin-left: 16px; font-size: 14px;}
+		#tool_option_bucket span { display: inline-block; vertical-align: top; height: 32px; line-height: 32px; font-size: 14px;}
+		#tool_option_bucket input { display: block; width: 84%; margin: 0% 8%; padding: 0px;}
 
 #tile_preview_section { width: 256px; height: 256px;}
 	#tile_preview_section canvas { background: #222;}

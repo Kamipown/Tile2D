@@ -51,22 +51,20 @@ function set_background_project(color)
 var active_tool = "pen";
 
 var pen_size = 1;
-var pen_opacity = 1;
+var pen_opacity = 100;
 
 var pipette_size = 1;
 
 var eraser_size = 1;
+var eraser_opacity = 100;
 
-var bucket_mode = 1;
-var bucket_tolerance = 1;
+var bucket_tolerance = 0;
 
 var lighten_size = 1;
-var lighten_mode = 1;
-var lighten_opacity = 100;
+var lighten_power = 100;
 
 var darken_size = 1;
-var darken_mode = 1;
-var darken_opacity = 100;
+var darken_power = 100;
 
 function show_tool_option()
 {
@@ -99,7 +97,7 @@ function update_pen_size(size)
 function update_pen_opacity(opacity)
 {
 	document.getElementById("pen_opacity_span").innerHTML = opacity + "%";
-	pen_opacity = parseInt(size);
+	pen_opacity = parseInt(opacity);
 }
 
 function update_pipette_size(size)
@@ -116,4 +114,16 @@ function update_eraser_size(size)
 	if (size > 1)
 		document.getElementById("eraser_size_span").innerHTML += "s";
 	eraser_size = parseInt(size);
+}
+
+function update_eraser_opacity(opacity)
+{
+	document.getElementById("eraser_opacity_span").innerHTML = opacity + "%";
+	eraser_opacity = parseInt(opacity);
+}
+
+function update_bucket_tolerance(tolerance)
+{
+	document.getElementById("bucket_tolerance_span").innerHTML = tolerance + "%";
+	bucket_tolerance = parseInt(tolerance);
 }

@@ -37,11 +37,15 @@
 			<section id="tools_section">
 				<h2>Tools<span onclick="show_hide(this)">-</span></h2>
 				<div class="tool_handler" onclick="select_tool(this, 'pen')" id="selected_tool"><img src="img/tools/pen.svg"/><span class="shortcut">P</span></div>
-				<div class="tool_handler" onclick="select_tool(this, 'pipette')"><img src="img/tools/pipette.svg"/><span class="shortcut">S</span></div>
+				<div class="tool_handler" onclick="select_tool(this, 'pipette')"><img src="img/tools/pipette.svg"/><span class="shortcut">O</span></div>
 				<div class="tool_handler" onclick="select_tool(this, 'eraser')"><img src="img/tools/eraser.svg"/><span class="shortcut">E</span></div>
 				<div class="tool_handler" onclick="select_tool(this, 'bucket')"><img src="img/tools/bucket.svg"/><span class="shortcut">B</span></div>
+				<div class="tool_handler" onclick="select_tool(this, 'swaper')"><img src="img/tools/swaper.svg"/><span class="shortcut">S</span></div>
 				<div class="tool_handler" onclick="select_tool(this, 'lighten')"><img src="img/tools/lighten.svg"/><span class="shortcut">L</span></div>
 				<div class="tool_handler" onclick="select_tool(this, 'darken')"><img src="img/tools/darken.svg"/><span class="shortcut">D</span></div>
+				<div class="tool_handler" onclick="select_tool(this, 'stroke')"><img src="img/tools/stroke.svg"/><span class="shortcut">S</span></div>
+				<div class="tool_handler" onclick="select_tool(this, 'square')"><img src="img/tools/square.svg"/><span class="shortcut">L</span></div>
+				<div class="tool_handler" onclick="select_tool(this, 'circle')"><img src="img/tools/circle.svg"/><span class="shortcut">D</span></div>
 				<div class="tool" id="tool_option_pen">
 					<p>Pen size : </p><span id="pen_size_span">1 pixel</span>
 					<input oninput="update_pen_size(this.value)" type="range" min="1" max="8" value="1"/>
@@ -55,8 +59,13 @@
 				<div class="tool" id="tool_option_eraser">
 					<p>Eraser size : </p><span id="eraser_size_span">1 pixel</span>
 					<input oninput="update_eraser_size(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Eraser opacity : </p><span id="eraser_opacity_span">100%</span>
+					<input oninput="update_eraser_opacity(this.value)" type="range" min="0" max="100" value="100"/>
 				</div>
-				<div class="tool" id="tool_option_bucket"></div>
+				<div class="tool" id="tool_option_bucket">
+					<p>Bucket tolerance : </p><span id="bucket_tolerance_span">0%</span>
+					<input oninput="update_bucket_tolerance(this.value)" type="range" min="0" max="100" value="0"/>
+				</div>
 				<div class="tool" id="tool_option_lighten"></div>
 				<div class="tool" id="tool_option_darken"></div>
 			</section>
