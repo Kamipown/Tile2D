@@ -55,19 +55,57 @@
 				<div class="tool" id="tool_option_pipette">
 					<p>Pipette size : </p><span id="pipette_size_span">1 pixel</span>
 					<input oninput="update_pipette_size(this.value)" type="range" min="1" max="8" value="1"/>
+					<p class="legend">With a size greater than 1, the pipette will select an average of the pixel colors selected.</p>
 				</div>
 				<div class="tool" id="tool_option_eraser">
 					<p>Eraser size : </p><span id="eraser_size_span">1 pixel</span>
 					<input oninput="update_eraser_size(this.value)" type="range" min="1" max="8" value="1"/>
 					<p>Eraser opacity : </p><span id="eraser_opacity_span">100%</span>
 					<input oninput="update_eraser_opacity(this.value)" type="range" min="0" max="100" value="100"/>
+					<p class="legend">With an opacity lower than 100, the eraser will fade the color to a partial transparency.</p>
 				</div>
 				<div class="tool" id="tool_option_bucket">
 					<p>Bucket tolerance : </p><span id="bucket_tolerance_span">0%</span>
 					<input oninput="update_bucket_tolerance(this.value)" type="range" min="0" max="100" value="0"/>
+					<p class="legend">More the tolerance is high, more this tool is leniant on the pixel colors to fill.</p>
 				</div>
-				<div class="tool" id="tool_option_lighten"></div>
-				<div class="tool" id="tool_option_darken"></div>
+				<div class="tool" id="tool_option_swaper">
+					<p>Swaper tolerance : </p><span id="swaper_tolerance_span">0%</span>
+					<input oninput="update_swaper_tolerance(this.value)" type="range" min="0" max="100" value="0"/>
+					<p class="legend">More the tolerance is high, more this tool is leniant on the pixel colors to fill.</p>
+				</div>
+				<div class="tool" id="tool_option_lighten">
+					<p>Lighten size : </p><span id="lighten_size_span">1 pixel</span>
+					<input oninput="update_lighten_size(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Lighten power : </p><span id="lighten_power_span">10%</span>
+					<input oninput="update_lighten_power(this.value)" type="range" min="0" max="100" value="10"/>
+					<p class="legend">More the power is high, more this tool will lighten the pixel colors.</p>
+				</div>
+				<div class="tool" id="tool_option_darken">
+					<p>Darken size : </p><span id="darken_size_span">1 pixel</span>
+					<input oninput="update_darken_size(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Darken power : </p><span id="darken_power_span">10%</span>
+					<input oninput="update_darken_power(this.value)" type="range" min="0" max="100" value="10"/>
+					<p class="legend">More the power is high, more this tool will darken the pixel colors.</p>
+				</div>
+				<div class="tool" id="tool_option_stroke">
+					<p>Stroke width : </p><span id="stroke_width_span">1 pixel</span>
+					<input oninput="update_stroke_width(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Stroke opacity : </p><span id="stroke_opacity_span">100%</span>
+					<input oninput="update_stroke_opacity(this.value)" type="range" min="0" max="100" value="100"/>
+				</div>
+				<div class="tool" id="tool_option_square">
+					<p>Square width : </p><span id="square_width_span">1 pixel</span>
+					<input oninput="update_square_width(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Square opacity : </p><span id="square_opacity_span">100%</span>
+					<input oninput="update_square_opacity(this.value)" type="range" min="0" max="100" value="100"/>
+				</div>
+				<div class="tool" id="tool_option_circle">
+					<p>Circle width : </p><span id="circle_width_span">1 pixel</span>
+					<input oninput="update_circle_width(this.value)" type="range" min="1" max="8" value="1"/>
+					<p>Circle opacity : </p><span id="circle_opacity_span">100%</span>
+					<input oninput="update_circle_opacity(this.value)" type="range" min="0" max="100" value="100"/>
+				</div>
 			</section>
 			<section id="palettes_section">
 				<h2>Palettes<span onclick="show_hide(this)">-</span></h2>

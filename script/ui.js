@@ -60,11 +60,22 @@ var eraser_opacity = 100;
 
 var bucket_tolerance = 0;
 
+var swaper_tolerance = 0;
+
 var lighten_size = 1;
-var lighten_power = 100;
+var lighten_power = 10;
 
 var darken_size = 1;
-var darken_power = 100;
+var darken_power = 10;
+
+var stroke_width = 1;
+var stroke_opacity = 100;
+
+var square_width = 1;
+var square_opacity = 100;
+
+var circle_width = 1;
+var circle_opacity = 100;
 
 function show_tool_option()
 {
@@ -77,6 +88,7 @@ function show_tool_option()
 	}
 	document.getElementById("tool_option_" + active_tool).style.display = "block";
 }
+show_tool_option();
 
 function select_tool(elem, tool)
 {
@@ -126,4 +138,80 @@ function update_bucket_tolerance(tolerance)
 {
 	document.getElementById("bucket_tolerance_span").innerHTML = tolerance + "%";
 	bucket_tolerance = parseInt(tolerance);
+}
+
+function update_swaper_tolerance(tolerance)
+{
+	document.getElementById("swaper_tolerance_span").innerHTML = tolerance + "%";
+	swaper_tolerance = parseInt(tolerance);
+}
+
+function update_lighten_size(size)
+{
+	document.getElementById("lighten_size_span").innerHTML = size + " pixel";
+	if (size > 1)
+		document.getElementById("lighten_size_span").innerHTML += "s";
+	lighten_size = parseInt(size);
+}
+
+function update_lighten_power(power)
+{
+	document.getElementById("lighten_power_span").innerHTML = power + "%";
+	lighten_power = parseInt(power);
+}
+
+function update_darken_size(size)
+{
+	document.getElementById("darken_size_span").innerHTML = size + " pixel";
+	if (size > 1)
+		document.getElementById("darken_size_span").innerHTML += "s";
+	darken_size = parseInt(size);
+}
+
+function update_darken_power(power)
+{
+	document.getElementById("darken_power_span").innerHTML = power + "%";
+	darken_power = parseInt(power);
+}
+
+function update_stroke_width(width)
+{
+	document.getElementById("stroke_width_span").innerHTML = width + " pixel";
+	if (width > 1)
+		document.getElementById("stroke_width_span").innerHTML += "s";
+	stroke_width = parseInt(width);
+}
+
+function update_stroke_opacity(opacity)
+{
+	document.getElementById("stroke_opacity_span").innerHTML = opacity + "%";
+	stroke_opacity = parseInt(opacity);
+}
+
+function update_square_width(width)
+{
+	document.getElementById("square_width_span").innerHTML = width + " pixel";
+	if (width > 1)
+		document.getElementById("square_width_span").innerHTML += "s";
+	square_width = parseInt(width);
+}
+
+function update_square_opacity(opacity)
+{
+	document.getElementById("square_opacity_span").innerHTML = opacity + "%";
+	square_opacity = parseInt(opacity);
+}
+
+function update_circle_width(width)
+{
+	document.getElementById("circle_width_span").innerHTML = width + " pixel";
+	if (width > 1)
+		document.getElementById("circle_width_span").innerHTML += "s";
+	circle_width = parseInt(width);
+}
+
+function update_circle_opacity(opacity)
+{
+	document.getElementById("circle_opacity_span").innerHTML = opacity + "%";
+	circle_opacity = parseInt(opacity);
 }
