@@ -48,8 +48,14 @@
 					<p>Pen opacity : </p><span id="pen_opacity_span">100%</span>
 					<input oninput="update_pen_opacity(this.value)" type="range" min="0" max="100" value="100"/>
 				</div>
-				<div class="tool" id="tool_option_pipette"></div>
-				<div class="tool" id="tool_option_eraser"></div>
+				<div class="tool" id="tool_option_pipette">
+					<p>Pipette size : </p><span id="pipette_size_span">1 pixel</span>
+					<input oninput="update_pipette_size(this.value)" type="range" min="1" max="8" value="1"/>
+				</div>
+				<div class="tool" id="tool_option_eraser">
+					<p>Eraser size : </p><span id="eraser_size_span">1 pixel</span>
+					<input oninput="update_eraser_size(this.value)" type="range" min="1" max="8" value="1"/>
+				</div>
 				<div class="tool" id="tool_option_bucket"></div>
 				<div class="tool" id="tool_option_lighten"></div>
 				<div class="tool" id="tool_option_darken"></div>

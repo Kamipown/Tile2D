@@ -14,7 +14,7 @@ function show_hide(elem)
 
 /* Project View */
 
-var zoom_value = 1;
+var zoom_value = 3;
 var tiles_count = 3;
 
 function set_zoom_value(val)
@@ -100,4 +100,20 @@ function update_pen_opacity(opacity)
 {
 	document.getElementById("pen_opacity_span").innerHTML = opacity + "%";
 	pen_opacity = parseInt(size);
+}
+
+function update_pipette_size(size)
+{
+	document.getElementById("pipette_size_span").innerHTML = size + " pixel";
+	if (size > 1)
+		document.getElementById("pipette_size_span").innerHTML += "s";
+	pipette_size = parseInt(size);
+}
+
+function update_eraser_size(size)
+{
+	document.getElementById("eraser_size_span").innerHTML = size + " pixel";
+	if (size > 1)
+		document.getElementById("eraser_size_span").innerHTML += "s";
+	eraser_size = parseInt(size);
 }
