@@ -46,6 +46,7 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 
 #palettes_section {}
 	#palettes_section select { display: block; width: 84%; height: 32px; margin: 0% 8%; margin-top: 16px;}
+		#palettes_section select option { display: block; height: 32px;}
 
 #tile_preview_section { width: 256px; height: 256px;}
 	#tile_preview_section canvas { background: #222;}
