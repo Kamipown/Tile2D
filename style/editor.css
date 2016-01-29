@@ -44,6 +44,9 @@ body { height: 100%; margin: 0px; padding: 0px; font-family: Roboto-Regular, Ver
 		#tools_section .tool .legend { width: auto; height: auto; line-height: 16px; margin: 0px 16px; font-size: 12px; color: #777; font-style: italic;}
 	#tool_option_pen { display: block}
 
+#palettes_section {}
+	#palettes_section select { display: block; width: 84%; height: 32px; margin: 0% 8%; margin-top: 16px;}
+
 #tile_preview_section { width: 256px; height: 256px;}
 	#tile_preview_section canvas { background: #222;}
 
