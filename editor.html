@@ -110,14 +110,12 @@
 			<section id="palettes_section">
 				<h2>Palettes<span onclick="show_hide(this)">-</span></h2>
 				<div id="palette" class="colors">
-					<span class="color default_black" onclick="select_left_color()" oncontextmenu="select_right_color()"></span>
-					<span class="color default_white" onclick="select_left_color()" oncontextmenu="select_right_color()"></span>
 				</div>
 				<div class="selected">
-					<input id="left_color" type="color" value="#000000" onchange="change_color(this.value, 1);"/>
-					<input id="right_color" type="color" value="#ffffff" onchange="change_color(this.value, 2);"/>
-					<span id="left_color_span">#000000</span>
-					<span id="right_color_span">#ffffff</span>
+					<div id="left_color" class="input_handler"><input id="left_color_input" type="color" value="#000000" onchange="change_color(this.value, 1);" oncontextmenu="remove_input_color(1); return(false);"/></div>
+					<div id="right_color" class="input_handler"><input id="right_color_input" type="color" value="#ffffff" onchange="change_color(this.value, 2);" oncontextmenu="remove_input_color(2); return(false);"/></div>
+					<span id="left_color_span"></span>
+					<span id="right_color_span"></span>
 				</div>
 			</section>
 		</aside>

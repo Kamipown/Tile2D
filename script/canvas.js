@@ -1,6 +1,13 @@
 var tile_width = 40;
 var tile_height = 40;
+
 var main_canvas = document.getElementById("main_canvas");
+var canvas_context = main_canvas.getContext("2d");
+var canvas_width;
+var canvas_height;
+var canvas_data;
+
+var tile = [];
 
 function update_main_canvas_position()
 {
@@ -18,9 +25,10 @@ function update_canvas_size()
 	var w = tile_width * tiles_count * zoom_value;
 	var h = tile_height * tiles_count * zoom_value;
 	main_canvas.style.width = w + "px";
-	main_canvas.width = w;
+	main_canvas.width = canvas_width = w;
 	main_canvas.style.height = h + "px";
-	main_canvas.height = h;
+	main_canvas.height = canvas_height = h;
+	canvas_data = canvas_context.getImageData(0, 0, canvas_width, canvas_height);
 }
 
 function init_canvas()
@@ -50,7 +58,7 @@ function canvas_mousemove(e)
 
 function canvas_click()
 {
-	
+
 }
 
 

@@ -12,8 +12,7 @@ function init_ui()
 	if (th)
 		bottom_div_h.innerHTML = th;
 
-	left_color.value = "#000000";
-	right_color.value = "#ffffff";
+	init_palette();
 }
 
 function show_hide(elem)
@@ -242,22 +241,59 @@ var right_color = document.getElementById("right_color");
 var left_color_span = document.getElementById("left_color_span");
 var right_color_span = document.getElementById("right_color_span"); 
 
-var left_color_val = "#000000";
-var right_color_val = "#ffffff";
+var left_color_val;
+var right_color_val;
+
+function init_palette()
+{
+	left_color_val = "#000000";
+	right_color_val = "#ffffff";
+
+	left_color_span.innerHTML = left_color_val;
+	left_color.style.background = left_color_val;
+	right_color_span.innerHTML = right_color_val;
+	right_color.style.background = right_color_val;
+
+	add_default_colors();
+}
 
 function change_color(color, who)
 {
+	alert(color);
 	if (who == 1)
 	{
-		left_color = color;
-		left_color_span.innerHTML = color;
+		left_color_val = color;
+		left_color.style.background = left_color_val;
+		left_color_span.innerHTML = left_color_val;
 	}
 	else if (who == 2)
 	{
-		right_color = color;
-		right_color_span.innerHTML = color;
+		right_color_val = color;
+		right_color.style.background = right_color_val;
+		right_color_span.innerHTML = right_color_val;
 	}
 	add_color(color);
+}
+
+function add_default_colors()
+{
+	add_color("#000000");
+	add_color("#222222");
+	add_color("#444444");
+	add_color("#666666");
+	add_color("#888888");
+	add_color("#aaaaaa");
+	add_color("#cccccc");
+	add_color("#ffffff");
+
+	add_color("#cc5555");
+	add_color("#5555cc");
+	add_color("#55cc55");
+	add_color("#55cccc");
+	add_color("#cccc55");
+	add_color("#cc55cc");
+	add_color("#5c5c5c");
+	add_color("#c5c5c5");
 }
 
 function add_color(color)
@@ -268,15 +304,21 @@ function add_color(color)
 	new_color.onclick = function()
 	{
 		left_color_val = color;
-		left_color.value = color;
+		left_color.style.background = color;
 		left_color_span.innerHTML = color;
 	}
 	new_color.oncontextmenu = function()
 	{
 		right_color_val = color;
-		right_color.value = color;
+		right_color.style.background = color;
 		right_color_span.innerHTML = color;
 		return (false);
 	}
+	new_color.ondblclick = remove_color;
 	document.getElementById("palette").appendChild(new_color);
+}
+
+function remove_color()
+{
+	this.parentNode.removeChild(this);
 }
