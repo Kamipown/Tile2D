@@ -13,7 +13,7 @@ function update_main_canvas_position()
 	main_canvas.style.top = (h / 2) - (main_canvas_h / 2) + "px";
 }
 
-function set_canvas_size()
+function update_canvas_size()
 {
 	var w = tile_width * tiles_count * zoom_value;
 	var h = tile_height * tiles_count * zoom_value;
@@ -31,11 +31,28 @@ function init_canvas()
 		tile_width = tw;
 	if (th)
 		tile_height = th;
-	set_canvas_size();
+	update_canvas_size();
 	update_main_canvas_position();
 }
 
 window.onresize = update_main_canvas_position;
+
+var canvas_cursor_x = 0;
+var canvas_cursor_y = 0;
+
+function canvas_mousemove(e)
+{
+	canvas_cursor_x = Math.floor((e.clientX - main_canvas.offsetLeft) / zoom_value) % tile_width;
+	canvas_cursor_y = Math.floor((e.clientY - main_canvas.offsetTop) / zoom_value) % tile_height;
+	bottom_div_x.innerHTML = canvas_cursor_x;
+	bottom_div_y.innerHTML = canvas_cursor_y;
+}
+
+function canvas_click()
+{
+	
+}
+
 
 /*
 var canvas = document.getElementById("main_canvas");

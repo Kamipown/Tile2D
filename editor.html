@@ -8,9 +8,9 @@
 		<link rel="icon" type="img/png" href="img/favicon.png" />
 	</head>
  
-	<body onload="init_canvas()">
+	<body onload="init_canvas(); init_ui();">
 
-		<canvas id="main_canvas" width="40" height="40"></canvas>
+		<canvas id="main_canvas" width="40" height="40" onmousemove="canvas_mousemove(event);" onclick="canvas_click()"></canvas>
 
 		<aside id="left_aside">
 			<section id="project_view_section">
@@ -109,12 +109,16 @@
 			</section>
 			<section id="palettes_section">
 				<h2>Palettes<span onclick="show_hide(this)">-</span></h2>
-				<select>
-					<option>Custom palette</option>
-					<option>Palette 1</option>
-					<option>Palette 2</option>
-					<option>Palette 3</option>
-				</select>
+				<div id="palette" class="colors">
+					<span class="color default_black" onclick="select_left_color()" oncontextmenu="select_right_color()"></span>
+					<span class="color default_white" onclick="select_left_color()" oncontextmenu="select_right_color()"></span>
+				</div>
+				<div class="selected">
+					<input id="left_color" type="color" value="#000000" onchange="change_color(this.value, 1);"/>
+					<input id="right_color" type="color" value="#ffffff" onchange="change_color(this.value, 2);"/>
+					<span id="left_color_span">#000000</span>
+					<span id="right_color_span">#ffffff</span>
+				</div>
 			</section>
 		</aside>
 
@@ -130,10 +134,14 @@
 		</aside>
 
 		<div id="bottom_div">
-			<span class="posx">x:0</span>
-			<span class="posy">y:0</span>
-			<span class="width">width:40</span>
-			<span class="height">height:40</span>
+			<span>x:</span>
+			<span id="bottom_div_x">0</span>
+			<span>y:</span>
+			<span id="bottom_div_y">0</span>
+			<span>width:</span>
+			<span id="bottom_div_w">0</span>
+			<span>height:</span>
+			<span id="bottom_div_h">0</span>
 		</div>
 
 		<script type="text/javascript" src="script/ui.js"></script>

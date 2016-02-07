@@ -1,3 +1,21 @@
+bottom_div_x = document.getElementById("bottom_div_x");
+bottom_div_y = document.getElementById("bottom_div_y");
+bottom_div_w = document.getElementById("bottom_div_w");
+bottom_div_h = document.getElementById("bottom_div_h");
+
+function init_ui()
+{
+	var tw = parseInt(localStorage.getItem("tile_width"));
+	var th = parseInt(localStorage.getItem("tile_height"));
+	if (tw)
+		bottom_div_w.innerHTML = tw;
+	if (th)
+		bottom_div_h.innerHTML = th;
+
+	left_color.value = "#000000";
+	right_color.value = "#ffffff";
+}
+
 function show_hide(elem)
 {
 	if (elem.innerHTML == "-")
@@ -22,9 +40,9 @@ function set_zoom_value(val)
 	var span_zoom_value = document.getElementById("span_zoom_value");
 	if (val == -1 && zoom_value > 1)
 		span_zoom_value.innerHTML = --zoom_value;
-	else if (val == 1 && zoom_value < 10)
+	else if (val == 1 && zoom_value < 20)
 		span_zoom_value.innerHTML = ++zoom_value;
-	set_canvas_size();
+	update_canvas_size();
 	update_main_canvas_position();
 }
 
@@ -36,7 +54,7 @@ function set_tiles_count(val)
 	else if (val == 2 && tiles_count < 15)
 		tiles_count += 2;
 	span_tiles_count.innerHTML = tiles_count + "x" + tiles_count;
-	set_canvas_size();
+	update_canvas_size();
 	update_main_canvas_position();
 }
 
@@ -214,4 +232,51 @@ function update_circle_opacity(opacity)
 {
 	document.getElementById("circle_opacity_span").innerHTML = opacity + "%";
 	circle_opacity = parseInt(opacity);
+}
+
+/* Palette */
+
+var left_color = document.getElementById("left_color");
+var right_color = document.getElementById("right_color");
+
+var left_color_span = document.getElementById("left_color_span");
+var right_color_span = document.getElementById("right_color_span"); 
+
+var left_color_val = "#000000";
+var right_color_val = "#ffffff";
+
+function change_color(color, who)
+{
+	if (who == 1)
+	{
+		left_color = color;
+		left_color_span.innerHTML = color;
+	}
+	else if (who == 2)
+	{
+		right_color = color;
+		right_color_span.innerHTML = color;
+	}
+	add_color(color);
+}
+
+function add_color(color)
+{
+	new_color = document.createElement("span");
+	new_color.className = "color";
+	new_color.style.background = color;
+	new_color.onclick = function()
+	{
+		left_color_val = color;
+		left_color.value = color;
+		left_color_span.innerHTML = color;
+	}
+	new_color.oncontextmenu = function()
+	{
+		right_color_val = color;
+		right_color.value = color;
+		right_color_span.innerHTML = color;
+		return (false);
+	}
+	document.getElementById("palette").appendChild(new_color);
 }
