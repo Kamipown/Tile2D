@@ -10,7 +10,9 @@
  
 	<body onload="init_canvas(); init_ui();">
 
-		<canvas id="main_canvas" width="40" height="40" onmousemove="canvas_mousemove(event);" onclick="canvas_click()"></canvas>
+		<div id="canvas_handler">
+			<canvas id="main_canvas" width="40" height="40" onmousemove="canvas_mousemove(event);" onclick="canvas_click()"></canvas>
+		</div>
 
 		<aside id="left_aside">
 			<section id="project_view_section">

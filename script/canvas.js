@@ -1,6 +1,7 @@
 var tile_width = 40;
 var tile_height = 40;
 
+var canvas_handler = document.getElementById("canvas_handler");
 var main_canvas = document.getElementById("main_canvas");
 var canvas_context = main_canvas.getContext("2d");
 var canvas_width;
@@ -9,15 +10,10 @@ var canvas_data;
 
 var tile = [];
 
-function update_main_canvas_position()
+function update_canvas_handler()
 {
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-	var main_canvas_w = main_canvas.clientWidth;
-	var main_canvas_h = main_canvas.clientHeight;
-
-	main_canvas.style.left = (w / 2) - (main_canvas_w / 2) + "px";
-	main_canvas.style.top = (h / 2) - (main_canvas_h / 2) + "px";
+	canvas_handler.style.width = window.innerWidth - 512 + "px";
+	canvas_handler.style.height = window.innerHeight + "px";
 }
 
 function update_canvas_size()
@@ -31,6 +27,17 @@ function update_canvas_size()
 	canvas_data = canvas_context.getImageData(0, 0, canvas_width, canvas_height);
 }
 
+function update_main_canvas_position()
+{
+	var w = canvas_handler.clientWidth;
+	var h = canvas_handler.clientHeight;
+	var main_canvas_w = main_canvas.clientWidth;
+	var main_canvas_h = main_canvas.clientHeight;
+
+	main_canvas.style.left = (w / 2) - (main_canvas_w / 2) + "px";
+	main_canvas.style.top = (h / 2) - (main_canvas_h / 2) + "px";
+}
+
 function init_canvas()
 {
 	var tw = parseInt(localStorage.getItem("tile_width"));
@@ -39,18 +46,23 @@ function init_canvas()
 		tile_width = tw;
 	if (th)
 		tile_height = th;
+	update_canvas_handler()
 	update_canvas_size();
 	update_main_canvas_position();
 }
 
-window.onresize = update_main_canvas_position;
+window.onresize = function()
+{
+	update_canvas_handler();
+	update_main_canvas_position();
+}
 
 var canvas_cursor_x = 0;
 var canvas_cursor_y = 0;
 
 function canvas_mousemove(e)
 {
-	canvas_cursor_x = Math.floor((e.clientX - main_canvas.offsetLeft) / zoom_value) % tile_width;
+	canvas_cursor_x = Math.floor((e.clientX - main_canvas.offsetLeft - 256) / zoom_value) % tile_width;
 	canvas_cursor_y = Math.floor((e.clientY - main_canvas.offsetTop) / zoom_value) % tile_height;
 	bottom_div_x.innerHTML = canvas_cursor_x;
 	bottom_div_y.innerHTML = canvas_cursor_y;
