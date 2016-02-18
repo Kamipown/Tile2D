@@ -8,7 +8,7 @@
 		<link rel="icon" type="img/png" href="img/favicon.png" />
 	</head>
  
-	<body onload="init_canvas(); init_ui();">
+	<body onload="init_ui(); init_canvas();">
 
 		<div id="canvas_handler">
 			<canvas id="main_canvas" width="40" height="40" onmousemove="canvas_mousemove(event);" onclick="canvas_click()"></canvas>
@@ -24,13 +24,13 @@
 					<p>Tiles :</p><input type="button" onclick="set_tiles_count(-2)" value="-" /><span id="span_tiles_count">3x3</span><input type="button" onclick="set_tiles_count(2)" value="+" />
 				</div>
 				<div class="grid">
-					<p>Grid :</p><input type="checkbox" checked />
+					<p>Grid :</p><input type="checkbox" />
 				</div>
 				<div class="shape">
-					<p>Shape :</p><input type="checkbox" checked />
+					<p>Shape :</p><input type="checkbox" />
 				</div>
 				<div class="rules">
-					<p>Rules :</p><input type="checkbox" checked />
+					<p>Rules :</p><input type="checkbox" />
 				</div>
 				<div class="background">
 					<p>Background :</p><input type="color" onchange="set_background_project(this.value)" value="#222222" />

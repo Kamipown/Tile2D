@@ -12,6 +12,7 @@ function init_ui()
 	if (th)
 		bottom_div_h.innerHTML = th;
 
+	project_view.init();
 	tools.init();
 	palette.init();
 }
