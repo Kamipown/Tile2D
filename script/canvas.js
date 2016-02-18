@@ -75,15 +75,15 @@ var Canvas =
 
 	event_mousemove: function(e)
 	{
-		this.cursor_x = Math.floor((e.clientX - Canvas.drawing.offsetLeft - 256) / Project_View.zoom_value) % Canvas.tile_width;
-		this.cursor_y = Math.floor((e.clientY - Canvas.drawing.offsetTop) / Project_View.zoom_value) % Canvas.tile_height;
+		Canvas.cursor_x = Math.floor((e.clientX - Canvas.drawing.offsetLeft - 256) / Project_View.zoom_value) % Canvas.tile_width;
+		Canvas.cursor_y = Math.floor((e.clientY - Canvas.drawing.offsetTop) / Project_View.zoom_value) % Canvas.tile_height;
 
-		Ui.x_info.innerHTML = this.cursor_x;
-		Ui.y_info.innerHTML = this.cursor_y;
+		Ui.x_info.innerHTML = Canvas.cursor_x;
+		Ui.y_info.innerHTML = Canvas.cursor_y;
 
-		if (this.mouse_l == true)
+		if (Canvas.mouse_l == true)
 			Canvas.event_click();
-		if (this.mouse_r == true)
+		if (Canvas.mouse_r == true)
 			Canvas.event_click();
 	},
 
@@ -91,12 +91,12 @@ var Canvas =
 	{
 		if (e.which == 1)
 		{
-			this.mouse_l = true;
+			Canvas.mouse_l = true;
 			Canvas.event_click();
 		}
 		if (e.which == 3)
 		{
-			this.mouse_l = true;
+			Canvas.mouse_l = true;
 			Canvas.event_click();
 		}
 	},
@@ -104,27 +104,27 @@ var Canvas =
 	event_mouseup: function(e)
 	{
 		if (e.which == 1)
-			this.mouse_l = false;
+			Canvas.mouse_l = false;
 		if (e.which == 3)
-			this.mouse_l = false;
+			Canvas.mouse_l = false;
 	},
 
 	event_click: function()
 	{
-
+		Canvas.draw_pixel();
 	},
 
 	init_pixels: function()
 	{
 		var x = 0;
 		var y = 0;
-		this.pixels = [];
-		while (x < this.tile_width)
+		Canvas.pixels = [];
+		while (x < Canvas.tile_width)
 		{
-			this.pixels[x] = [];
-			while (y < this.tile_height)
+			Canvas.pixels[x] = [];
+			while (y < Canvas.tile_height)
 			{
-				this.pixels[x][y] =
+				Canvas.pixels[x][y] =
 				{
 					r:0,
 					g:0,
@@ -136,7 +136,61 @@ var Canvas =
 			y = 0;
 			++x;
 		}
-		this.pixels[3][0].r = 28;
+	},
+
+	draw_pixel: function()
+	{
+		var x = Canvas.cursor_x;
+		var y = Canvas.cursor_y;
+
+		Canvas.pixels[x][y].r = Palette.selected_colors_rgb[0];
+		Canvas.pixels[x][y].g = Palette.selected_colors_rgb[1];
+		Canvas.pixels[x][y].b = Palette.selected_colors_rgb[2];
+
+		var i = 0;
+		var j = 0;
+		while (j < Project_View.tiles_count)
+		{
+			while (i < Project_View.tiles_count)
+			{
+				this.draw_zoomed_pixel(x, y, i, j);
+				++i;
+			}
+			i = 0;
+			++j;
+		}
+		console.log(Canvas.tile_width);
+		console.log(Canvas.tile_height);
+		Canvas.drawing_ctx.putImageData(Canvas.drawing_data, 0, 0);
+	},
+
+	draw_zoomed_pixel: function(x, y, i, j)
+	{
+		x *= Project_View.zoom_value;
+		y *= Project_View.zoom_value;
+		var max_x = x + Project_View.zoom_value;
+		var max_y = y + Project_View.zoom_value;
+
+		while (y < max_y)
+		{
+			while (x < max_x)
+			{
+				this.draw_pixel_to_data(x + (i * Canvas.tile_width * Project_View.zoom_value), y + (j * Canvas.tile_width * Project_View.zoom_value));
+				++x;
+			}
+			x -= Project_View.zoom_value;
+			++y;
+		}
+	},
+
+	draw_pixel_to_data: function(x, y)
+	{
+		var i = ((x + (y * Canvas.drawing_width)) * 4);
+
+		Canvas.drawing_data.data[i + 0] = Palette.selected_colors_rgb[0];
+		Canvas.drawing_data.data[i + 1] = Palette.selected_colors_rgb[1];
+		Canvas.drawing_data.data[i + 2] = Palette.selected_colors_rgb[2];
+		Canvas.drawing_data.data[i + 3] = 255;
 	}
 }
 
@@ -145,62 +199,3 @@ window.onresize = function()
 	Canvas.update_handler();
 	Canvas.update_drawing_position();
 }
-
-// function canvas_click()
-// {
-// 	put_pixel(canvas_cursor_x, canvas_cursor_y, 255, 0, 0, 255);
-// 	canvas_context.putImageData(canvas_data, 0, 0);
-// }
-
-// var l_click = false;
-// document.onmousedown = function()
-// {
-// 	l_click = true;
-// }
-// document.onmouseup = function()
-// {
-// 	l_click = false;
-// }
-
-// function put_pixel(x, y, r, g, b, a)
-// {
-// 	var index = ((x + (y * canvas_width)) * 4);
-
-// 	canvas_data.data[index + 0] = r;
-// 	canvas_data.data[index + 1] = g;
-// 	canvas_data.data[index + 2] = b;
-// 	canvas_data.data[index + 3] = a;
-// }
-
-/*
-var canvas = document.getElementById("main_canvas");
-var canvasWidth = canvas.width;
-var canvasHeight = canvas.height;
-var context = canvas.getContext("2d");
-var canvasData = context.getImageData(0, 0, canvasWidth, canvasHeight);
-
-function put_pixel(x, y, r, g, b, a)
-{
-	var index = ((x + (y * canvasWidth)) * 4);
-
-	canvasData.data[index + 0] = r;
-	canvasData.data[index + 1] = g;
-	canvasData.data[index + 2] = b;
-	canvasData.data[index + 3] = a;
-}
-
-function update_canvas()
-{
-	context.putImageData(canvasData, 0, 0);
-}
-
-put_pixel(5, 5, 255, 0, 0, 255);
-put_pixel(5, 6, 255, 0, 0, 255);
-put_pixel(5, 7, 255, 0, 0, 255);
-update_canvas();
-
-var img    = canvas.toDataURL("image/png");
-document.write('<img src="'+img+'"/>');
-window.open("file:///C:/Users/Kamipown/Desktop/Tile2d/index.html", "Window Title", "width=500, height=450");
-*/
-

@@ -1,6 +1,6 @@
 var Project_View =
 {
-	zoom_value: 3,
+	zoom_value: 10,
 	tiles_count: 3,
 	grid: false,
 	shape: false,
