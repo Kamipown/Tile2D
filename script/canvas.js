@@ -1,105 +1,176 @@
-var tile_width = 40;
-var tile_height = 40;
-
-var canvas_handler = document.getElementById("canvas_handler");
-var main_canvas = document.getElementById("main_canvas");
-var canvas_context = main_canvas.getContext("2d");
-var canvas_width;
-var canvas_height;
-var canvas_data;
-
-var tile = [];
-
-function update_canvas_handler()
+var Canvas =
 {
-	canvas_handler.style.width = window.innerWidth - 512 + "px";
-	canvas_handler.style.height = window.innerHeight + "px";
-}
+	drawing: undefined,
+	drawing_ctx: undefined,
+	drawing_width: undefined,
+	drawing_height: undefined,
+	drawing_data: undefined,
+	drawing_handler: undefined,
 
-function update_canvas_size()
-{
-	var w = tile_width * project_view.tiles_count * project_view.zoom_value;
-	var h = tile_height * project_view.tiles_count * project_view.zoom_value;
-	main_canvas.style.width = w + "px";
-	main_canvas.width = canvas_width = w;
-	main_canvas.style.height = h + "px";
-	main_canvas.height = canvas_height = h;
-	canvas_data = canvas_context.getImageData(0, 0, canvas_width, canvas_height);
-}
+	tile_width: 40,
+	tile_height: 40,
+	pixels: undefined,
 
-function update_main_canvas_position()
-{
-	var w = canvas_handler.clientWidth;
-	var h = canvas_handler.clientHeight;
-	var main_canvas_w = main_canvas.clientWidth;
-	var main_canvas_h = main_canvas.clientHeight;
+	cursor_x: 0,
+	cursor_y: 0,
 
-	main_canvas.style.left = (w / 2) - (main_canvas_w / 2) + "px";
-	main_canvas.style.top = (h / 2) - (main_canvas_h / 2) + "px";
-}
+	mouse_l: false,
+	mouse_r: false,
 
-function init_canvas()
-{
-	var tw = parseInt(localStorage.getItem("tile_width"));
-	var th = parseInt(localStorage.getItem("tile_height"));
-	if (tw)
-		tile_width = tw;
-	if (th)
-		tile_height = th;
-	update_canvas_handler()
-	update_canvas_size();
-	update_main_canvas_position();
+	init: function()
+	{
+		var tw = parseInt(localStorage.getItem("tile_width"));
+		var th = parseInt(localStorage.getItem("tile_height"));
+		
+		if (tw)
+			this.tile_width = tw;
+		if (th)
+			this.tile_height = th;
+
+		this.drawing = document.getElementById("main_canvas");
+		this.drawing_ctx = this.drawing.getContext("2d");
+		this.drawing_width = this.tile_width * Project_View.zoom_value * Project_View.tiles_count;
+		this.drawing_height = this.tile_height * Project_View.zoom_value * Project_View.tiles_count;
+		this.drawing_data = this.drawing_ctx.getImageData(0, 0, this.drawing_width, this.drawing_height);
+		this.drawing_handler = document.getElementById("canvas_handler");
+
+		this.update_handler()
+		this.update_drawing_size();
+		this.update_drawing_position();
+
+		this.init_pixels();
+
+		this.handle_events();
+	},
+
+	update_handler: function()
+	{
+		this.drawing_handler.style.width = window.innerWidth - 512 + "px";
+		this.drawing_handler.style.height = window.innerHeight + "px";
+	},
+
+	update_drawing_size: function()
+	{
+		var w = this.tile_width * Project_View.zoom_value * Project_View.tiles_count;
+		var h = this.tile_height * Project_View.zoom_value * Project_View.tiles_count;
+		this.drawing.style.width = w + "px";
+		this.drawing.width = this.drawing_width = w;
+		this.drawing.style.height = h + "px";
+		this.drawing.height = this.drawing_height = h;
+		this.drawing_data = this.drawing_ctx.getImageData(0, 0, this.drawing_width, this.drawing_height);
+	},
+
+	update_drawing_position: function()
+	{
+		main_canvas.style.left = (this.drawing_handler.clientWidth / 2) - (this.drawing.clientWidth / 2) + "px";
+		main_canvas.style.top = (this.drawing_handler.clientHeight / 2) - (this.drawing.clientHeight / 2) + "px";
+	},
+
+	handle_events: function()
+	{
+		this.drawing.addEventListener('mousemove', this.event_mousemove);
+		this.drawing.addEventListener('mousedown', this.event_mousedown);
+		this.drawing.addEventListener('mouseup', this.event_mouseup);
+	},
+
+	event_mousemove: function(e)
+	{
+		this.cursor_x = Math.floor((e.clientX - Canvas.drawing.offsetLeft - 256) / Project_View.zoom_value) % Canvas.tile_width;
+		this.cursor_y = Math.floor((e.clientY - Canvas.drawing.offsetTop) / Project_View.zoom_value) % Canvas.tile_height;
+
+		Ui.x_info.innerHTML = this.cursor_x;
+		Ui.y_info.innerHTML = this.cursor_y;
+
+		if (this.mouse_l == true)
+			Canvas.event_click();
+		if (this.mouse_r == true)
+			Canvas.event_click();
+	},
+
+	event_mousedown: function(e)
+	{
+		if (e.which == 1)
+		{
+			this.mouse_l = true;
+			Canvas.event_click();
+		}
+		if (e.which == 3)
+		{
+			this.mouse_l = true;
+			Canvas.event_click();
+		}
+	},
+
+	event_mouseup: function(e)
+	{
+		if (e.which == 1)
+			this.mouse_l = false;
+		if (e.which == 3)
+			this.mouse_l = false;
+	},
+
+	event_click: function()
+	{
+
+	},
+
+	init_pixels: function()
+	{
+		var x = 0;
+		var y = 0;
+		this.pixels = [];
+		while (x < this.tile_width)
+		{
+			this.pixels[x] = [];
+			while (y < this.tile_height)
+			{
+				this.pixels[x][y] =
+				{
+					r:0,
+					g:0,
+					b:0,
+					a:0
+				}
+				++y;
+			}
+			y = 0;
+			++x;
+		}
+		this.pixels[3][0].r = 28;
+	}
 }
 
 window.onresize = function()
 {
-	update_canvas_handler();
-	update_main_canvas_position();
+	Canvas.update_handler();
+	Canvas.update_drawing_position();
 }
 
-var canvas_cursor_x = 0;
-var canvas_cursor_y = 0;
+// function canvas_click()
+// {
+// 	put_pixel(canvas_cursor_x, canvas_cursor_y, 255, 0, 0, 255);
+// 	canvas_context.putImageData(canvas_data, 0, 0);
+// }
 
-function canvas_mousemove(e)
-{
-	//console.log("e.clientY:" + e.clientY + " main_canvas.offsetTop:" + main_canvas.offsetTop);
-	//console.log(canvas_handler.offsetHeight + " " + main_canvas.offsetHeight + " " + main_canvas.offsetTop + " " + e.clientY);
+// var l_click = false;
+// document.onmousedown = function()
+// {
+// 	l_click = true;
+// }
+// document.onmouseup = function()
+// {
+// 	l_click = false;
+// }
 
-	canvas_cursor_x = Math.floor((e.clientX - main_canvas.offsetLeft - 256) / project_view.zoom_value) % tile_width;
-	canvas_cursor_y = Math.floor((e.clientY - main_canvas.offsetTop) / project_view.zoom_value) % tile_height;
+// function put_pixel(x, y, r, g, b, a)
+// {
+// 	var index = ((x + (y * canvas_width)) * 4);
 
-	bottom_div_x.innerHTML = canvas_cursor_x;
-	bottom_div_y.innerHTML = canvas_cursor_y;
-
-	if (l_click)
-		canvas_click();
-}
-
-function canvas_click()
-{
-	put_pixel(canvas_cursor_x, canvas_cursor_y, 255, 0, 0, 255);
-	canvas_context.putImageData(canvas_data, 0, 0);
-}
-
-var l_click = false;
-document.onmousedown = function()
-{
-	l_click = true;
-}
-document.onmouseup = function()
-{
-	l_click = false;
-}
-
-function put_pixel(x, y, r, g, b, a)
-{
-	var index = ((x + (y * canvas_width)) * 4);
-
-	canvas_data.data[index + 0] = r;
-	canvas_data.data[index + 1] = g;
-	canvas_data.data[index + 2] = b;
-	canvas_data.data[index + 3] = a;
-}
+// 	canvas_data.data[index + 0] = r;
+// 	canvas_data.data[index + 1] = g;
+// 	canvas_data.data[index + 2] = b;
+// 	canvas_data.data[index + 3] = a;
+// }
 
 /*
 var canvas = document.getElementById("main_canvas");
